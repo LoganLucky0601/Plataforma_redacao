@@ -31,6 +31,32 @@ async function atualizarSessao(){const {data:{user},error}=await db.auth.getUser
 async function sair(){resultado(await db.auth.signOut());usuario=null;dadosAdmin=null;atualizarCabecalho();await carregarConteudos();location.hash='#login';navegar();} // Sair.
 $('form-cadastro').addEventListener('submit',async e=>{e.preventDefault();if(!db)return;const password=$('senha-cadastro').value;if(password!==$('senha-confirma').value)return aviso('mensagem-cadastro','As senhas precisam ser iguais.');if(!$('aceite-teste').checked)return aviso('mensagem-cadastro','Confirme que este pagamento é apenas um teste.');try{const email=$('email-cadastro').value.trim().toLowerCase();resultado(await db.auth.signUp({email,password,options:{data:{name:$('nome-cadastro').value.trim(),phone:$('telefone-cadastro').value.trim(),plan_id:planoEscolhido}}}));e.target.reset();aviso('mensagem-cadastro','Cadastro enviado. Confirme seu e-mail, se solicitado.');aviso('mensagem-login','Cadastro enviado ao Supabase! Verifique seu e-mail (inclusive Spam) e confirme a conta, se solicitado. Depois, entre com suas credenciais. O acesso de aluno aguarda aprovação.');location.hash='#login';}catch(err){aviso('mensagem-cadastro',err.message);}}); // Cadastro pendente.
 $('form-login').addEventListener('submit',async e=>{e.preventDefault();if(!db)return;try{resultado(await db.auth.signInWithPassword({email:$('email-login').value.trim().toLowerCase(),password:$('senha-login').value}));await atualizarSessao();if(usuario?.role==='admin'){await carregarAdmin();location.hash='#gestao';}else location.hash='#minha-conta';$('senha-login').value='';aviso('mensagem-login','');navegar();}catch(err){aviso('mensagem-login',err.message);}}); // Login Supabase.
+// Reenvia a confirmação de cadastro para o e-mail digitado, sem solicitar senha.
+$('reenviar-confirmacao').addEventListener('click', async () => {
+    const email = $('email-login').value.trim().toLowerCase(); // Aproveita o Gmail informado na tela de login.
+    const botao = $('reenviar-confirmacao'); // Obtém o botão para evitar solicitações duplicadas.
+
+    if (!db) return aviso('mensagem-login', 'A conexão com o Supabase não está disponível.'); // Confere a conexão.
+    if (!email || !$('email-login').checkValidity()) { // Confere se o e-mail tem formato válido.
+        return aviso('mensagem-login', 'Informe um e-mail válido para reenviar a confirmação.');
+    }
+
+    botao.disabled = true; // Evita vários cliques durante o envio.
+    aviso('mensagem-login', 'Solicitando novo e-mail de confirmação...'); // Exibe o andamento.
+
+    try {
+        // O Supabase envia a confirmação de cadastro, se a conta estiver pendente.
+        const { error } = await db.auth.resend({ type: 'signup', email });
+        if (error) throw error; // Mostra erro real, como limite temporário de envios.
+
+        aviso('mensagem-login', 'Solicitação recebida! Confira a caixa de entrada e o Spam. Se o e-mail não chegar, verifique as configurações de envio do Supabase.');
+    } catch (erro) {
+        aviso('mensagem-login', 'Não foi possível reenviar: ' + erro.message);
+    } finally {
+        botao.disabled = false; // Libera uma nova tentativa após a resposta.
+    }
+}); // Fim do reenvio de confirmação.
+
 $('mostrar-senha').addEventListener('click',()=>{const f=$('senha-login');f.type=f.type==='password'?'text':'password';$('mostrar-senha').textContent=f.type==='password'?'Mostrar':'Ocultar';}); // Mostrar senha.
 $('sair-conta').addEventListener('click',sair);$('sair-admin').addEventListener('click',sair); // Logout.
 $('buscar-aulas').addEventListener('input',renderizarAulas);$('filtro-modulo').addEventListener('change',renderizarAulas); // Busca.
