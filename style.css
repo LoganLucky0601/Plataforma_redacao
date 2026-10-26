@@ -1,0 +1,231 @@
+/* ============================================================
+   PALETA COMPLETA — EDITE A COR DE CADA ELEMENTO AQUI.
+   Todas as propriedades abaixo têm uma responsabilidade própria.
+   Troque qualquer HEX e salve o arquivo para visualizar a mudança.
+   ============================================================ */
+:root {
+  --cor-fundo-pagina: #ffffff; /* Fundo geral. */
+  --cor-fundo-cabecalho: #f3f1f3; /* Fundo da barra superior. */
+  --cor-borda-cabecalho: #443c48; /* Divisor do cabeçalho. */
+  --cor-texto-principal: #211b26; /* Texto de base. */
+  --cor-texto-secundario: #55505a; /* Parágrafos e descrições. */
+  --cor-titulo: #9556b8; /* Títulos de destaque. */
+  --cor-titulo-destaque: #fa8c95; /* Trecho rosa no título. */
+  --cor-titulo-secao: #453049; /* Títulos das seções internas. */
+  --cor-etiqueta: #fa8c95; /* Texto pequeno acima dos títulos. */
+  --cor-texto-menu: #644665; /* Navegação superior. */
+  --cor-texto-menu-ativo: #fa8c95; /* Menu selecionado. */
+  --cor-texto-logo: #9556b8; /* Alternativa textual à logo. */
+  --cor-logo-destaque: #fa8c95; /* Detalhe da marca textual. */
+  --cor-fundo-card: #f1eff2; /* Cards em geral. */
+  --cor-fundo-card-secundario: #eae8ec; /* Gradiente dos cards. */
+  --cor-borda-card: #a9a1ac; /* Borda dos cartões. */
+  --cor-titulo-card: #3d3340; /* Título dentro de um card. */
+  --cor-texto-card: #56505c; /* Descrição dentro de um card. */
+  --cor-numero-card: #fa8c95; /* Indicadores 01, 02, 03. */
+  --cor-legenda-card: #251e29; /* Legenda dos indicadores. */
+  --cor-fundo-botao-principal: #fa8c95; /* Botão preenchido. */
+  --cor-fundo-botao-hover: #f6a5ad; /* Botão ao passar o mouse. */
+  --cor-texto-botao-principal: #181219; /* Texto do botão preenchido. */
+  --cor-borda-botao-secundario: #7e7382; /* Contorno do botão secundário. */
+  --cor-texto-botao-secundario: #9556b8; /* Texto do botão contornado. */
+  --cor-fundo-icone: #fce6eb; /* Bloco atrás dos ícones. */
+  --cor-texto-icone: #9556b8; /* Cor do ícone. */
+  --cor-tag-texto: #9556b8; /* Texto da etiqueta/categoria. */
+  --cor-tag-borda: #dcb8e8; /* Borda da etiqueta. */
+  --cor-tag-fundo: #f8edf9; /* Fundo da etiqueta. */
+  --cor-topicos: #544d5b; /* Lista dos tópicos de aula. */
+  --cor-link-conteudo: #9556b8; /* Links de cada conteúdo. */
+  --cor-texto-indisponivel: #89838d; /* Avisos sem link. */
+  --cor-fundo-campo: #ffffff; /* Inputs, textarea e selects. */
+  --cor-borda-campo: #b9b0be; /* Contorno dos campos. */
+  --cor-texto-campo: #29222d; /* Texto digitado. */
+  --cor-placeholder: #817883; /* Exemplos dentro dos campos. */
+  --cor-foco: #9556b8; /* Realce do teclado. */
+  --cor-mensagem: #8a3f69; /* Mensagens nos formulários. */
+  --cor-borda-rodape: #d6ccd8; /* Linha do rodapé. */
+  --cor-texto-rodape: #746c78; /* Textos do rodapé. */
+  --cor-caderno-fundo: #efe7db; /* Folha da ilustração. */
+  --cor-caderno-margem: #e7c8bd; /* Linha vertical da folha. */
+  --cor-caderno-titulo: #a24f13; /* Etiqueta do caderno. */
+  --cor-caderno-linha: #c8c0b6; /* Linhas claras do caderno. */
+  --cor-caderno-linha-forte: #756960; /* Linha escura. */
+  --cor-caderno-texto: #5b5149; /* Frase final da folha. */
+  --cor-glow: rgba(149,86,184,.14); /* Brilho atrás do caderno. */
+  --largura: 1200px; /* Largura máxima do conteúdo. */
+  /* Apelidos mantidos para preservar os estilos originais. */
+  --fundo: var(--cor-fundo-pagina);
+  --painel: var(--cor-fundo-card);
+  --painel-claro: var(--cor-fundo-card-secundario);
+  --borda: var(--cor-borda-card);
+  --laranja: var(--cor-etiqueta);
+  --texto: var(--cor-texto-principal);
+  --muted: var(--cor-texto-secundario);
+}
+
+/* 02 — RESET: evita diferenças de espaçamento entre navegadores. */
+* { box-sizing:border-box; margin:0; padding:0; }
+/* 03 — ROLAGEM: deixa transições de âncora mais suaves. */
+html { scroll-behavior:smooth; }
+/* 04 — CORPO: mantém a fonte Poppins usada no portfólio. */
+body { background:var(--fundo); color:var(--texto); font-family:'Poppins',sans-serif; min-height:100vh; overflow-x:hidden; }
+/* 05 — LINKS: herdam a cor do elemento pai. */
+a { color:inherit; text-decoration:none; }
+/* 06 — FOCO: torna a navegação por teclado identificável. */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline:3px solid var(--cor-foco); outline-offset:3px; }
+/* 07 — LINK DE ACESSIBILIDADE: aparece ao navegar com Tab. */
+.skip-link { position:absolute; top:-60px; left:12px; padding:10px; z-index:99; background:var(--laranja); color:#111; }
+.skip-link:focus { top:10px; }
+/* 08 — CABEÇALHO: fixo como referência de navegação do projeto original. */
+.site-header { position:sticky; top:0; z-index:20; min-height:82px; padding:14px max(4vw,20px); display:flex; align-items:center; justify-content:space-between; gap:24px; border-bottom:1px solid var(--cor-borda-cabecalho); background:var(--cor-fundo-cabecalho); backdrop-filter:blur(14px); }
+/* 09 — MARCA: laranja funciona como cor de destaque. */
+.logo { font-size:1.35rem; font-weight:800; letter-spacing:-.8px; white-space:nowrap; }
+.logo span,.ponto { color:var(--cor-logo-destaque); }
+.logo small { font-size:.55rem; font-weight:600; letter-spacing:2px; color:var(--cor-texto-logo); }
+/* 10 — MENU: dispõe os links lado a lado no desktop. */
+.nav-principal { display:flex; gap:22px; align-items:center; flex-wrap:wrap; }
+.nav-principal a { font-size:.83rem; color:var(--cor-texto-menu); transition:color .2s; }
+.nav-principal a:hover,.nav-principal a[aria-current='page'] { color:var(--cor-texto-menu-ativo); }
+/* 11 — BOTÕES: reutiliza btn-header, btn-primary e btn-secondary do portfólio. */
+.btn-header,.btn-primary { color:var(--cor-texto-botao-principal); background:var(--cor-fundo-botao-principal); border:0; border-radius:9px; padding:13px 21px; font:600 .84rem 'Poppins',sans-serif; cursor:pointer; display:inline-flex; justify-content:center; align-items:center; gap:10px; transition:transform .2s,background .2s; }
+.btn-header { white-space:nowrap; }
+.btn-header:hover,.btn-primary:hover { background:var(--cor-fundo-botao-hover); transform:translateY(-2px); }
+.btn-secondary { color:var(--cor-texto-botao-secundario); border:1px solid var(--cor-borda-botao-secundario); border-radius:9px; padding:12px 21px; font:600 .84rem 'Poppins',sans-serif; background:transparent; display:inline-flex; align-items:center; justify-content:center; cursor:pointer; }
+.btn-secondary:hover { border-color:var(--laranja); }
+/* 12 — PÁGINAS: somente a seção selecionada fica visível. */
+.pagina[hidden] { display:none !important; }
+.pagina { min-height:64vh; }
+/* 13 — HERO: mesmo princípio do portfólio (texto + ilustração). */
+.hero { max-width:var(--largura); width:90%; margin:0 auto; min-height:630px; padding:85px 0 75px; display:flex; align-items:center; gap:6%; }
+.hero-text { flex:1.1; min-width:0; }
+ .eyebrow { color:var(--cor-etiqueta); letter-spacing:2.6px; font-size:.69rem; font-weight:700; }
+.hero-text h1 { font-size:clamp(2.5rem,5.3vw,4.65rem); line-height:1.13; letter-spacing:-2.2px; margin:22px 0; max-width:690px; }
+.hero-text h1 em { color:var(--cor-titulo-destaque); font-style:normal; }
+.hero-text p,.subtitulo { color:var(--muted); line-height:1.85; font-size:.96rem; max-width:650px; }
+.botoes { display:flex; gap:13px; flex-wrap:wrap; margin-top:29px; }
+/* 14 — INDICADORES: três caixas que lembram os cards do portfólio. */
+.stats { display:flex; gap:14px; flex-wrap:wrap; margin-top:44px; }
+.card { min-width:115px; border:1px solid var(--borda); border-radius:12px; background:var(--painel); padding:18px 22px; display:flex; flex-direction:column; }
+.card strong { color:var(--cor-numero-card); font-size:1.4rem; }
+ .card span { color:var(--cor-legenda-card); font-size:.76rem; }
+/* 15 — ILUSTRAÇÃO: produz um caderno apenas com CSS, sem imagens externas. */
+.hero-image { flex:.9; display:flex; position:relative; justify-content:center; align-items:center; min-height:390px; }
+.glow { position:absolute; width:100%; max-width:530px; aspect-ratio:1; background:radial-gradient(circle,rgba(255,122,0,.24),rgba(255,122,0,.07) 43%,transparent 74%); border-radius:50%; }
+.folha { width:min(335px,88%); min-height:390px; position:relative; padding:45px 34px; transform:rotate(5deg); background:var(--cor-caderno-fundo); border-radius:15px; box-shadow:0 30px 75px #0008; display:flex; flex-direction:column; gap:21px; }
+.folha:before { content:''; position:absolute; top:0; bottom:0; left:22px; width:2px; background:var(--cor-caderno-margem); }
+.folha-etiqueta { color:var(--cor-caderno-titulo); font-size:.67rem; letter-spacing:2px; font-weight:800; }
+.linha { width:100%; height:8px; background:var(--cor-caderno-linha); border-radius:12px; }
+.linha.grande { margin-top:18px; height:14px; background:var(--cor-caderno-linha-forte); }
+.linha.medio { width:73%; }
+.selo { color:var(--cor-caderno-texto); font-size:.8rem; line-height:1.7; margin-top:auto; font-weight:600; }
+/* 16 — SEÇÕES: reaproveita a mesma largura da tela inicial. */
+.secao { width:90%; max-width:var(--largura); margin:0 auto; padding:70px 0 95px; }
+.secao h1,.secao h2 { letter-spacing:-1px; }
+.secao h1 { font-size:clamp(2rem,4vw,3.2rem); margin:13px 0 12px; }
+.secao h2 { font-size:clamp(1.5rem,3vw,2.2rem); margin-top:10px; }
+.secao-topo { margin-bottom:30px; }
+.subtitulo { margin-bottom:32px; }
+/* 17 — CARDS: uma mesma estrutura serve para aulas, materiais e recomendações. */
+.grid { display:grid; gap:18px; }
+.grid.tres { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.grid.duas { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.box { background:linear-gradient(145deg,var(--painel-claro),var(--painel)); border:1px solid var(--borda); border-radius:16px; padding:28px; }
+.box h3 { color:var(--cor-titulo-card); font-size:1.1rem; margin:14px 0 10px; }
+ .box p { color:var(--cor-texto-card); font-size:.86rem; line-height:1.85; }
+.destaque-link { transition:border-color .2s,transform .2s; }
+.destaque-link:hover { transform:translateY(-3px); border-color:var(--laranja); }
+.destaque-link > span:last-child,.link-conteudo { color:var(--cor-link-conteudo); font-weight:700; font-size:.78rem; margin-top:22px; display:inline-block; }
+.icone-bloco { display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:11px; background:var(--cor-fundo-icone); color:var(--cor-texto-icone); font-size:1.4rem; }
+.cartao-conteudo { display:flex; flex-direction:column; align-items:flex-start; min-height:265px; }
+.cartao-conteudo h3 { margin-top:18px; }
+.cartao-conteudo p { margin-bottom:14px; }
+ .tag { color:var(--cor-tag-texto); font-size:.68rem; font-weight:700; border:1px solid var(--cor-tag-borda); background:var(--cor-tag-fundo); padding:7px 10px; border-radius:30px; }
+.topicos { margin:3px 0 12px 20px; color:var(--cor-topicos); font-size:.79rem; line-height:1.9; }
+.link-conteudo,.indisponivel { margin-top:auto; padding-top:15px; }
+.indisponivel { color:var(--cor-texto-indisponivel); font-size:.77rem; }
+/* 18 — FILTROS: mantém campos fáceis de localizar. */
+.filtros { display:flex; flex-wrap:wrap; gap:14px; margin-bottom:25px; }
+.filtros input { flex:2; min-width:210px; }
+.filtros select { flex:1; min-width:185px; }
+input,select,textarea { background:var(--cor-fundo-campo); border:1px solid var(--cor-borda-campo); color:var(--cor-texto-campo); padding:13px 14px; border-radius:9px; font:inherit; width:100%; }
+input::placeholder,textarea::placeholder { color:var(--cor-placeholder); }
+.visually-hidden { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
+.vazio { color:var(--muted); padding:20px 0; grid-column:1/-1; }
+/* 19 — ENCONTRO: informação clara de status. */
+.encontro-box { max-width:720px; padding:38px; }
+.encontro-box h2 { margin:18px 0; }
+.encontro-box .tag { display:inline-block; margin-top:24px; }
+.destaque { margin-top:32px; max-width:730px; }
+.destaque h2 { margin:0 0 12px; }
+/* 20 — FORMULÁRIO: editor local para demonstrar o cadastro. */
+.formulario { max-width:710px; display:grid; gap:13px; }
+.formulario label { font-size:.83rem; font-weight:600; }
+.formulario .btn-primary { justify-self:start; margin-top:8px; }
+.mensagem { font-size:.81rem; color:var(--cor-mensagem); line-height:1.7; }
+.botao-acao { margin-top:20px; }
+/* 21 — RODAPÉ: persiste em todas as páginas da SPA. */
+.site-footer { border-top:1px solid var(--cor-borda-rodape); padding:35px 5%; display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap; }
+.site-footer > span { font-size:.78rem; letter-spacing:1px; }
+.site-footer strong { font-size:1.15rem; }
+.site-footer p,.site-footer small,.link-discreto { color:var(--cor-texto-rodape); font-size:.74rem; }
+.link-discreto:hover { color:var(--laranja); }
+/* 22 — TABLET: evita menus espremidos. */
+@media(max-width:1050px) { .site-header { flex-wrap:wrap; justify-content:center; } .nav-principal { justify-content:center; order:3; width:100%; } .hero { gap:2%; } .grid.tres { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+/* 23 — CELULAR: empilha o conteúdo e torna os botões fáceis de usar. */
+@media(max-width:680px) { .site-header { padding:16px 4%; gap:13px; } .nav-principal { gap:11px 16px; } .nav-principal a { font-size:.73rem; } .btn-header { font-size:.73rem; padding:10px 12px; } .hero { width:90%; flex-direction:column; padding:48px 0 35px; align-items:stretch; min-height:auto; } .hero-text h1 { letter-spacing:-1.2px; } .hero-image { min-height:300px; margin-top:30px; } .folha { min-height:300px; width:250px; padding:25px 27px; gap:15px; } .stats { gap:8px; } .card { min-width:90px; padding:12px 15px; } .secao { padding:43px 0 65px; } .grid.tres,.grid.duas { grid-template-columns:1fr; } .box { padding:22px; } .site-footer { align-items:flex-start; flex-direction:column; } }
+/* 24 — ACESSIBILIDADE: respeita quem prefere menos animações. */
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*:before,*:after { transition:none !important; } }
+
+/* ============================================================
+   25 — PERSONALIZAÇÃO DA MARCA / LOGIN (VERSÃO 2).
+   Estes estilos não alteram o layout principal do portfólio.
+   ============================================================ */
+.logo { display:inline-flex; align-items:center; color:var(--cor-texto-logo); } /* Alinha a marca no cabeçalho. */
+.logo-imagem { display:block; max-width:230px; max-height:65px; width:auto; height:auto; object-fit:contain; } /* Redimensiona a logo sem distorcer. */
+.logo-imagem[hidden],.logo-texto[hidden] { display:none !important; } /* Oculta a alternativa não utilizada. */
+.logo-texto { font-size:1.45rem; font-weight:800; letter-spacing:-1px; white-space:nowrap; } /* Exibe nome provisório. */
+.logo-texto small { color:var(--cor-texto-principal); font-size:.5rem; letter-spacing:2px; } /* Complemento da marca. */
+.logo-texto b { color:var(--cor-logo-destaque); } /* Destaca Rai. */
+.acoes-cabecalho { display:flex; align-items:center; gap:12px; flex-wrap:wrap; } /* Agrupa encontro e login. */
+.btn-login { color:var(--cor-texto-botao-secundario); border:1px solid var(--cor-borda-botao-secundario); background:transparent; border-radius:9px; padding:12px 16px; font-size:.83rem; font-weight:600; } /* Estiliza o botão entrar. */
+.btn-login:hover { border-color:var(--cor-foco); } /* Feedback ao passar o mouse. */
+.hero-text h1 { color:var(--cor-titulo); } /* Cor individual do título hero. */
+.secao h1,.secao h2 { color:var(--cor-titulo-secao); } /* Cor própria dos títulos internos. */
+.card { background:var(--cor-fundo-card); border-color:var(--cor-borda-card); } /* Personaliza indicadores. */
+.box { border-color:var(--cor-borda-card); } /* Personaliza outros cartões. */
+.glow { background:radial-gradient(circle,var(--cor-glow),transparent 74%); } /* Usa brilho configurável. */
+.skip-link { background:var(--cor-fundo-botao-principal); color:var(--cor-texto-botao-principal); } /* Acessibilidade com paleta consistente. */
+.caixa-login { max-width:520px; } /* Evita formulário muito largo. */
+.campo-senha { display:flex; gap:8px; align-items:center; } /* Senha e botão na mesma linha. */
+.campo-senha input { flex:1; min-width:0; } /* Campo se adapta ao espaço. */
+.mostrar-senha { border:1px solid var(--cor-borda-botao-secundario); border-radius:9px; background:var(--cor-fundo-campo); color:var(--cor-texto-botao-secundario); padding:12px; font:inherit; cursor:pointer; } /* Alterna a exibição da senha. */
+.ajuda-login { color:var(--cor-texto-secundario); font-size:.79rem; line-height:1.8; } /* Credenciais visíveis da demonstração. */
+@media(max-width:680px) { .logo-imagem { max-width:175px; max-height:48px; } .acoes-cabecalho { justify-content:center; } .btn-login { font-size:.73rem; padding:10px 12px; } } /* Adequa a marca e o acesso ao celular. */
+
+/* 26 — PLANOS: cores separadas preservam a identidade original. */
+:root {
+ --cor-preco-plano:#9556b8; /* Valor em destaque. */
+ --cor-legenda-preco:#655d69; /* Texto de periodicidade. */
+ --cor-plano-selecionado:#fa8c95; /* Plano em evidência. */
+ --cor-fundo-pagamento:#fff5f6; /* Caixa do pagamento de teste. */
+ --cor-borda-pagamento:#e9b1bf; /* Contorno da caixa de teste. */
+ --cor-fundo-admin:#faf6fb; /* Fundo de linhas administrativas. */
+ --cor-borda-admin:#d6c4da; /* Divisor das linhas. */
+ --cor-aviso:#894766; /* Mensagens informativas. */
+}
+.preco-plano { color:var(--cor-preco-plano); font-size:2.25rem; font-weight:800; margin:10px 0; } /* Destaca o valor. */
+.preco-plano small { color:var(--cor-legenda-preco); font-size:.78rem; font-weight:500; } /* Informa a cobrança por mês. */
+.cartao-plano { display:flex; flex-direction:column; gap:12px; } /* Organiza opções de assinatura. */
+.cartao-plano .btn-primary { margin-top:auto; } /* Alinha botões entre cartões. */
+.observacao { color:var(--cor-aviso); font-size:.82rem; margin-top:18px; } /* Explica a simulação. */
+.pagamento-demo { background:var(--cor-fundo-pagamento); border-color:var(--cor-borda-pagamento); padding:20px; } /* Realça etapa fictícia. */
+.checkbox-linha { display:flex; align-items:center; gap:10px; font-size:.8rem; } /* Deixa checkbox ao lado do texto. */
+.checkbox-linha input { width:auto; } /* Impede checkbox de ocupar a linha inteira. */
+.abas-gestao { display:flex; flex-wrap:wrap; gap:10px; margin:22px 0; } /* Organiza abas administrativas. */
+.aba-painel[hidden] { display:none !important; } /* Oculta as outras abas. */
+.lista-administrativa { display:grid; gap:12px; margin-top:25px; } /* Empilha registros. */
+.registro-admin { padding:18px; border:1px solid var(--cor-borda-admin); border-radius:12px; background:var(--cor-fundo-admin); display:flex; justify-content:space-between; align-items:center; gap:15px; flex-wrap:wrap; } /* Linha administrativa. */
+.registro-admin p { font-size:.83rem; color:var(--cor-texto-secundario); } /* Detalhes do registro. */
+.acoes-registro { display:flex; flex-wrap:wrap; gap:7px; } /* Agrupa editar e excluir. */
+.acoes-registro button { padding:8px 12px; } /* Reduz botões internos. */
+@media(max-width:680px) { .preco-plano { font-size:1.8rem; } .registro-admin { align-items:stretch; flex-direction:column; } } /* Otimiza telas pequenas. */
