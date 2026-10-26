@@ -11,14 +11,14 @@ const configurado=settings.supabaseUrl?.startsWith('https://') && settings.supab
 const db=configurado ? window.supabase.createClient(settings.supabaseUrl,settings.supabaseAnonKey) : null; // Conecta à nuvem.
 let usuario=null, planos=[],planoEscolhido=null,dadosAdmin=null; // Estado da sessão.
 let catalogo={aulas:[],materiais:[],recomendacoes:[],depoimentos:[]}; // Conteúdos em memória.
-const rotas=['inicio','aulas','biblioteca','recomendacoes','depoimentos','encontro','planos','cadastro','login','minha-conta','gestao']; // Páginas existentes.
+const rotas=['inicio','aulas','biblioteca','recomendacoes','depoimentos','encontro','planos','cadastro','login','recuperar','nova-senha','minha-conta','gestao']; // Páginas existentes.
 const privadas=['aulas','biblioteca','recomendacoes','depoimentos','encontro','minha-conta']; // Requer assinatura.
 const seguro = link => typeof link==='string' && (/^https:\/\/[^\s]+$/i.test(link) || /^materiais\/[\w./-]+$/.test(link) && !link.includes('..')) ? link : ''; // Valida links.
 function resultado({data,error}) {if(error) throw new Error(error.message);return data;} // Repassa erros amigavelmente.
 function perfil(row) {return row ? {id:row.id,email:row.email,name:row.name,phone:row.phone,role:row.role,subscription:{planId:row.plan_id,status:row.subscription_status,endAt:row.subscription_end}} : null;} // Adapta estrutura anterior.
 function assinaturaAtiva(u) {return u?.role==='admin' || (u?.subscription?.status==='active' && Date.parse(u.subscription.endAt)>Date.now());} // Expiração.
 function atualizarCabecalho(){const link=$('link-login');link.textContent=usuario ? (usuario.role==='admin'?'Administração':'Minha conta') : 'Entrar';link.href=usuario ? (usuario.role==='admin'?'#gestao':'#minha-conta') : '#login';} // Cabeçalho.
-function navegar(){let route=location.hash.slice(1);if(!rotas.includes(route))route='inicio';if(route==='gestao' && usuario?.role!=='admin')route='login';if(route==='cadastro'&&!planoEscolhido)route='planos';if(privadas.includes(route) && !assinaturaAtiva(usuario))route=usuario?'minha-conta':'planos';document.querySelectorAll('.pagina').forEach(p=>{p.hidden=p.id!==route;p.classList.toggle('ativa',p.id===route);});document.querySelectorAll('[data-rota]').forEach(a=>a.dataset.rota===route?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));window.scrollTo(0,0);} // SPA.
+function navegar(){let route=location.hash.slice(1);if(!rotas.includes(route))route='inicio';if(route==='gestao' && usuario?.role!=='admin')route='login';if(route==='nova-senha'&&!recuperacaoAutorizada)route='recuperar';if(route==='cadastro'&&!planoEscolhido)route='planos';if(privadas.includes(route) && !assinaturaAtiva(usuario))route=usuario?'minha-conta':'planos';document.querySelectorAll('.pagina').forEach(p=>{p.hidden=p.id!==route;p.classList.toggle('ativa',p.id===route);});document.querySelectorAll('[data-rota]').forEach(a=>a.dataset.rota===route?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));window.scrollTo(0,0);} // SPA.
 function cartao(item,tipo){const box=el('article','box cartao-conteudo');box.append(el('span','tag',item.categoria),el('h3','',item.titulo),el('p','',item.descricao));if(tipo==='aulas'&&item.topicos?.length){const ul=el('ul','topicos');item.topicos.forEach(t=>ul.append(el('li','',t)));box.append(ul);}const link=seguro(item.link);if(link){const a=el('a','link-conteudo',tipo==='materiais'?'Abrir / baixar material ↗':'Acessar conteúdo ↗');a.href=link;a.target='_blank';a.rel='noopener noreferrer';box.append(a);}else box.append(el('span','indisponivel','Conteúdo em preparação'));return box;} // Cards.
 function grade(tipo,id,itens){const dest=$(id);dest.replaceChildren();if(!itens.length)dest.append(el('p','vazio','Nenhum conteúdo disponível.'));itens.forEach(i=>dest.append(cartao(i,tipo)));} // Grades.
 function renderizarAulas(){const busca=$('buscar-aulas').value.toLocaleLowerCase('pt-BR'),categoria=$('filtro-modulo').value;grade('aulas','lista-aulas',catalogo.aulas.filter(i=>[i.titulo,i.descricao,i.categoria,...(i.topicos||[])].join(' ').toLocaleLowerCase('pt-BR').includes(busca)&&(categoria==='todos'||categoria===i.categoria)));} // Filtros.
@@ -31,31 +31,106 @@ async function atualizarSessao(){const {data:{user},error}=await db.auth.getUser
 async function sair(){resultado(await db.auth.signOut());usuario=null;dadosAdmin=null;atualizarCabecalho();await carregarConteudos();location.hash='#login';navegar();} // Sair.
 $('form-cadastro').addEventListener('submit',async e=>{e.preventDefault();if(!db)return;const password=$('senha-cadastro').value;if(password!==$('senha-confirma').value)return aviso('mensagem-cadastro','As senhas precisam ser iguais.');if(!$('aceite-teste').checked)return aviso('mensagem-cadastro','Confirme que este pagamento é apenas um teste.');try{const email=$('email-cadastro').value.trim().toLowerCase();resultado(await db.auth.signUp({email,password,options:{data:{name:$('nome-cadastro').value.trim(),phone:$('telefone-cadastro').value.trim(),plan_id:planoEscolhido}}}));e.target.reset();aviso('mensagem-cadastro','Cadastro enviado. Confirme seu e-mail, se solicitado.');aviso('mensagem-login','Cadastro enviado ao Supabase! Verifique seu e-mail (inclusive Spam) e confirme a conta, se solicitado. Depois, entre com suas credenciais. O acesso de aluno aguarda aprovação.');location.hash='#login';}catch(err){aviso('mensagem-cadastro',err.message);}}); // Cadastro pendente.
 $('form-login').addEventListener('submit',async e=>{e.preventDefault();if(!db)return;try{resultado(await db.auth.signInWithPassword({email:$('email-login').value.trim().toLowerCase(),password:$('senha-login').value}));await atualizarSessao();if(usuario?.role==='admin'){await carregarAdmin();location.hash='#gestao';}else location.hash='#minha-conta';$('senha-login').value='';aviso('mensagem-login','');navegar();}catch(err){aviso('mensagem-login',err.message);}}); // Login Supabase.
-// Reenvia a confirmação de cadastro para o e-mail digitado, sem solicitar senha.
-$('reenviar-confirmacao').addEventListener('click', async () => {
-    const email = $('email-login').value.trim().toLowerCase(); // Aproveita o Gmail informado na tela de login.
-    const botao = $('reenviar-confirmacao'); // Obtém o botão para evitar solicitações duplicadas.
+// Controle temporário: só quem comprovar posse do e-mail poderá cadastrar a nova senha.
+let recuperacaoAutorizada = false;
 
-    if (!db) return aviso('mensagem-login', 'A conexão com o Supabase não está disponível.'); // Confere a conexão.
-    if (!email || !$('email-login').checkValidity()) { // Confere se o e-mail tem formato válido.
-        return aviso('mensagem-login', 'Informe um e-mail válido para reenviar a confirmação.');
+// Ao retornar do link de recuperação, o Supabase valida o token e informa o evento.
+db?.auth.onAuthStateChange((evento) => {
+    if (evento === 'PASSWORD_RECOVERY') {
+        recuperacaoAutorizada = true;
+        location.hash = '#nova-senha';
+        aviso('mensagem-nova-senha', 'E-mail confirmado para recuperação. Escolha uma nova senha.');
     }
+});
 
-    botao.disabled = true; // Evita vários cliques durante o envio.
-    aviso('mensagem-login', 'Solicitando novo e-mail de confirmação...'); // Exibe o andamento.
+// Obtém o e-mail informado no fluxo de recuperação.
+function emailRecuperacao() {
+    const campo = $('email-recuperacao');
+    if (!campo.value.trim() || !campo.checkValidity()) {
+        aviso('mensagem-recuperacao', 'Digite um e-mail válido para continuar.');
+        return null;
+    }
+    return campo.value.trim().toLowerCase();
+}
 
+// Requisição de e-mail: nunca promete entrega se o provedor bloquear envios.
+async function solicitarRecuperacao(metodo) {
+    const email = emailRecuperacao();
+    if (!email || !db) return;
+    const botao = $(metodo === 'link' ? 'enviar-link-recuperacao' : 'enviar-codigo-recuperacao');
+    botao.disabled = true;
+    aviso('mensagem-recuperacao', 'Solicitando a recuperação...');
     try {
-        // O Supabase envia a confirmação de cadastro, se a conta estiver pendente.
-        const { error } = await db.auth.resend({ type: 'signup', email });
-        if (error) throw error; // Mostra erro real, como limite temporário de envios.
-
-        aviso('mensagem-login', 'Solicitação recebida! Confira a caixa de entrada e o Spam. Se o e-mail não chegar, verifique as configurações de envio do Supabase.');
+        if (metodo === 'link') {
+            // O endereço atual precisa estar autorizado em Supabase Auth > URL Configuration.
+            const redirectTo = location.origin + location.pathname;
+            resultado(await db.auth.resetPasswordForEmail(email, { redirectTo }));
+        } else {
+            // Não cria uma conta nova; o código precisa estar habilitado no template de e-mail.
+            resultado(await db.auth.signInWithOtp({
+                email,
+                options: { shouldCreateUser: false }
+            }));
+        }
+        aviso('mensagem-recuperacao', metodo === 'link'
+            ? 'Solicitação enviada. Verifique a caixa de entrada e o Spam. Abra o link recebido para escolher uma nova senha.'
+            : 'Solicitação enviada. Consulte seu e-mail. Para receber seis dígitos, o modelo Magic Link do Supabase precisa incluir o código {{ .Token }}.');
     } catch (erro) {
-        aviso('mensagem-login', 'Não foi possível reenviar: ' + erro.message);
+        aviso('mensagem-recuperacao', 'Não foi possível solicitar a recuperação: ' + erro.message);
     } finally {
-        botao.disabled = false; // Libera uma nova tentativa após a resposta.
+        botao.disabled = false;
     }
-}); // Fim do reenvio de confirmação.
+}
+$('enviar-link-recuperacao').addEventListener('click', () => solicitarRecuperacao('link'));
+$('enviar-codigo-recuperacao').addEventListener('click', () => solicitarRecuperacao('codigo'));
+
+// O Supabase valida o código no servidor antes de liberar a redefinição.
+$('validar-codigo-recuperacao').addEventListener('click', async () => {
+    const email = emailRecuperacao();
+    const token = $('codigo-recuperacao').value.trim();
+    if (!email) return;
+    if (!/^\\d{6}$/.test(token)) {
+        aviso('mensagem-recuperacao', 'O código deve conter seis números.');
+        return;
+    }
+    try {
+        resultado(await db.auth.verifyOtp({ email, token, type: 'email' }));
+        recuperacaoAutorizada = true;
+        location.hash = '#nova-senha';
+        navegar();
+    } catch (erro) {
+        aviso('mensagem-recuperacao', 'Código inválido ou expirado: ' + erro.message);
+    }
+});
+
+// Atualiza a senha somente após validação de identidade pelo Supabase.
+$('form-nova-senha').addEventListener('submit', async (evento) => {
+    evento.preventDefault();
+    if (!recuperacaoAutorizada) {
+        aviso('mensagem-nova-senha', 'Confirme sua identidade pelo link ou código enviado ao seu e-mail.');
+        return;
+    }
+    const senha = $('nova-senha-campo').value;
+    if (senha !== $('nova-senha-confirmacao').value) {
+        aviso('mensagem-nova-senha', 'As senhas digitadas não são iguais.');
+        return;
+    }
+    try {
+        const { data: { user } } = await db.auth.getUser();
+        if (!user) throw new Error('Sessão de recuperação expirada. Solicite outro link ou código.');
+        resultado(await db.auth.updateUser({ password: senha }));
+        recuperacaoAutorizada = false;
+        await db.auth.signOut();
+        usuario = null;
+        atualizarCabecalho();
+        evento.target.reset();
+        aviso('mensagem-login', 'Senha atualizada! Entre com seu e-mail e a nova senha.');
+        location.hash = '#login';
+        navegar();
+    } catch (erro) {
+        aviso('mensagem-nova-senha', 'Não foi possível mudar a senha: ' + erro.message);
+    }
+});
 
 $('mostrar-senha').addEventListener('click',()=>{const f=$('senha-login');f.type=f.type==='password'?'text':'password';$('mostrar-senha').textContent=f.type==='password'?'Mostrar':'Ocultar';}); // Mostrar senha.
 $('sair-conta').addEventListener('click',sair);$('sair-admin').addEventListener('click',sair); // Logout.
