@@ -1,0 +1,201 @@
+<!DOCTYPE html> <!-- Informa ao navegador que usamos HTML5. -->
+<html lang="pt-BR"> <!-- Define o idioma principal como português brasileiro. -->
+<head> <!-- Reúne as configurações da página. -->
+  <meta charset="UTF-8"> <!-- Permite usar acentos e caracteres especiais. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Adapta a interface a telas pequenas. -->
+  <meta name="description" content="Logissa Redação: aprenda, organize ideias e desenvolva sua escrita."> <!-- Resumo da plataforma. -->
+  <title>Logissa | Redação</title> <!-- Nome mostrado na aba do navegador. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Otimiza o carregamento da fonte. -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Prepara a conexão para os arquivos da fonte. -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"> <!-- Usa a fonte do portfólio. -->
+  <link rel="stylesheet" href="style.css"> <!-- Carrega os estilos separados. -->
+   <!-- Carrega a interação da plataforma. -->
+</head>
+<body> <!-- Inicia o conteúdo visível. -->
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a> <!-- Melhora o acesso via teclado. -->
+  <header class="site-header"> <!-- Cabeçalho fixo inspirado no portfólio. -->
+    <a class="logo" href="#inicio" aria-label="Logissa Redação — voltar ao início"> <!-- Espaço da sua marca personalizada. -->
+      <img class="logo-imagem" src="assets/logo.png" alt="Logo da Redação com a Raíssa" > <!-- Substitua o arquivo logo.png pela sua imagem. -->
+      <span class="logo-texto" hidden>Redação <small>COM A</small> <b>Rai</b></span> <!-- Texto aparece enquanto a imagem não existir. -->
+    </a> <!-- Marca e atalho para o início. -->
+    <nav class="nav-principal" aria-label="Navegação principal"> <!-- Agrupa os menus do site. -->
+      <a href="#inicio" data-rota="inicio">Início</a> <!-- Abre a tela de apresentação. -->
+      <a href="#aulas" data-rota="aulas">Aulas</a> <!-- Abre aulas e módulos. -->
+      <a href="#biblioteca" data-rota="biblioteca">Biblioteca</a> <!-- Abre materiais para baixar. -->
+      <a href="#recomendacoes" data-rota="recomendacoes">Recomendações</a> <!-- Abre vídeos, palestras e documentários. -->
+      <a href="#depoimentos" data-rota="depoimentos">Depoimentos</a> <!-- Depoimentos. -->
+      <a href="#planos" data-rota="planos">Planos</a> <!-- Assinaturas. --> <!-- Abre comentários aprovados. -->
+    </nav>
+    <div class="acoes-cabecalho"> <!-- Botões do lado direito. -->
+      <a class="btn-header" href="#encontro" data-rota="encontro">Encontro com Raíssa</a> <!-- Mantém o encontro em destaque. -->
+      <a class="btn-login" href="#login" data-rota="login" id="link-login">Entrar</a> <!-- Abre o formulário de acesso demonstrativo. -->
+    </div>
+  </header>
+  <main id="conteudo"> <!-- Contém as telas centrais da aplicação. -->
+    <section id="inicio" class="pagina ativa" aria-labelledby="titulo-inicio"> <!-- Página inicial. -->
+      <div class="hero"> <!-- Retoma o layout de destaque do portfólio. -->
+        <div class="hero-text"> <!-- Organiza o texto principal à esquerda. -->
+          <span class="eyebrow">SUA JORNADA COMEÇA AQUI</span> <!-- Identifica a proposta. -->
+          <h1 id="titulo-inicio">Escrever bem é <em>construir ideias.</em></h1> <!-- Mensagem de abertura. -->
+          <p>Uma biblioteca de conhecimento para você desenvolver sua redação no seu ritmo, com aulas, materiais, repertórios e orientações da Raíssa.</p> <!-- Resume o produto. -->
+          <div class="botoes"> <!-- Agrupa as ações mais relevantes. -->
+            <a class="btn-primary" href="#aulas">Explorar aulas <span aria-hidden="true">↗</span></a> <!-- Navega para o catálogo. -->
+            <a class="btn-secondary" href="#biblioteca">Ver materiais</a> <!-- Navega para a biblioteca. -->
+          </div>
+          <div class="stats"> <!-- Exibe os componentes principais sem números fictícios. -->
+            <div class="card"><strong>01</strong><span>Aprenda</span></div> <!-- Etapa um. -->
+            <div class="card"><strong>02</strong><span>Pratique</span></div> <!-- Etapa dois. -->
+            <div class="card"><strong>03</strong><span>Evolua</span></div> <!-- Etapa três. -->
+          </div>
+        </div>
+        <div class="hero-image" aria-hidden="true"> <!-- Representa visualmente o estudo. -->
+          <div class="glow"></div> <!-- Reaproveita o brilho visual do portfólio. -->
+          <div class="folha"><span class="folha-etiqueta">CADERNO DE IDEIAS</span><span class="linha grande"></span><span class="linha"></span><span class="linha medio"></span><span class="linha"></span><span class="selo">Sua próxima redação começa com uma ideia.</span></div> <!-- Exibe um cartão ilustrativo, sem imagem externa. -->
+        </div>
+      </div>
+      <div class="secao"> <!-- Introduz os caminhos de estudo. -->
+        <div class="secao-topo"><div><span class="eyebrow">CONHEÇA A PLATAFORMA</span><h2>Um espaço para estudar de verdade</h2></div></div> <!-- Título da seção. -->
+        <div class="grid tres"> <!-- Cartões de apresentação. -->
+          <a class="box destaque-link" href="#aulas"><span class="icone-bloco">▶</span><h3>Aulas por temas</h3><p>Vídeos e tópicos organizados para estudar com clareza.</p><span>Ver aulas ↗</span></a> <!-- Acesso às aulas. -->
+          <a class="box destaque-link" href="#biblioteca"><span class="icone-bloco">▤</span><h3>Materiais práticos</h3><p>Roteiros, resumos, exercícios e dicas para baixar.</p><span>Explorar biblioteca ↗</span></a> <!-- Acesso aos materiais. -->
+          <a class="box destaque-link" href="#recomendacoes"><span class="icone-bloco">✦</span><h3>Além da aula</h3><p>Recomendações de vídeos, palestras e documentários.</p><span>Descobrir ↗</span></a> <!-- Acesso às recomendações. -->
+        </div>
+      </div>
+    </section>
+    <section id="aulas" class="pagina secao" aria-labelledby="titulo-aulas" hidden> <!-- Tela do catálogo de aulas. -->
+      <span class="eyebrow">APRENDIZAGEM POR ETAPAS</span><h1 id="titulo-aulas">Módulos e aulas</h1><p class="subtitulo">Cada conteúdo tem um tema central, tópicos e espaço para o vídeo gravado.</p> <!-- Apresentação do catálogo. -->
+      <div class="filtros"><label class="visually-hidden" for="buscar-aulas">Buscar aulas</label><input id="buscar-aulas" type="search" placeholder="Buscar por tema ou tópico..."><label class="visually-hidden" for="filtro-modulo">Filtrar módulo</label><select id="filtro-modulo"><option value="todos">Todos os módulos</option></select></div> <!-- Busca e filtro. -->
+      <div id="lista-aulas" class="grid tres" aria-live="polite"></div> <!-- O JavaScript insere os cartões de aulas. -->
+    </section>
+    <section id="biblioteca" class="pagina secao" aria-labelledby="titulo-biblioteca" hidden> <!-- Tela de recursos baixáveis. -->
+      <span class="eyebrow">ESTUDE NO SEU TEMPO</span><h1 id="titulo-biblioteca">Biblioteca de estudos</h1><p class="subtitulo">Materiais de apoio, exercícios e dicas reunidos em um só lugar.</p> <!-- Descrição da biblioteca. -->
+      <div id="lista-materiais" class="grid tres"></div> <!-- O JavaScript insere os materiais. -->
+    </section>
+    <section id="recomendacoes" class="pagina secao" aria-labelledby="titulo-recomendacoes" hidden> <!-- Tela de indicações externas. -->
+      <span class="eyebrow">APRENDA ALÉM DA PLATAFORMA</span><h1 id="titulo-recomendacoes">Conteúdos recomendados</h1><p class="subtitulo">Uma curadoria de vídeos, palestras e documentários para ampliar seu repertório.</p> <!-- Descrição da curadoria. -->
+      <div id="lista-recomendacoes" class="grid tres"></div> <!-- O JavaScript insere indicações. -->
+    </section>
+    <section id="depoimentos" class="pagina secao" aria-labelledby="titulo-depoimentos" hidden> <!-- Tela de relatos dos alunos. -->
+      <span class="eyebrow">HISTÓRIAS REAIS</span><h1 id="titulo-depoimentos">O que dizem os alunos</h1><p class="subtitulo">Este espaço será reservado para comentários publicados com autorização dos autores.</p> <!-- Explica como os relatos serão usados. -->
+      <div id="lista-depoimentos" class="grid duas"></div> <!-- O JavaScript insere relatos aprovados. -->
+      <div class="box destaque"><h2>Quer deixar seu relato?</h2><p>Na versão pública, um formulário com autorização e moderação poderá receber sua mensagem. Nesta demonstração, ainda não há envio para servidor.</p></div> <!-- Esclarece a limitação inicial. -->
+    </section>
+    <section id="encontro" class="pagina secao" aria-labelledby="titulo-encontro" hidden> <!-- Tela para encontros opcionais. -->
+      <span class="eyebrow">UM MOMENTO ESPECIAL</span><h1 id="titulo-encontro">Encontro com Raíssa</h1><p class="subtitulo">Para quem deseja uma orientação mais próxima, a plataforma poderá oferecer encontros mediante disponibilidade.</p> <!-- Apresenta a opção premium sem prometer vagas. -->
+      <div class="box encontro-box"><span class="icone-bloco">◇</span><h2>Uma conversa para orientar seus próximos passos</h2><p>Definam juntos o formato, a duração e as condições antes de habilitar agendamentos ou pagamentos.</p><span class="tag">Agendamentos ainda não disponíveis</span></div> <!-- Informa o status verdadeiro. -->
+    </section>
+    <!-- NOVO: tela de planos, os recursos são iguais em todos. -->
+    <section id="planos" class="pagina secao" hidden>
+      <span class="eyebrow">ASSINATURAS</span>
+      <h1>Escolha seu plano</h1>
+      <p class="subtitulo">Todos os planos dão acesso aos mesmos recursos. Os valores são fictícios e podem ser modificados no painel administrativo.</p>
+      <div id="lista-planos" class="grid tres"></div>
+      <p class="observacao">Demonstração: a confirmação do pagamento é simulada. Nenhum valor será cobrado.</p>
+    </section>
+    <!-- NOVO: cadastro vem depois da seleção de um plano. -->
+    <section id="cadastro" class="pagina secao" hidden>
+      <span class="eyebrow">CADASTRO DO ALUNO</span>
+      <h1>Crie sua conta</h1>
+      <p class="subtitulo" id="resumo-plano">Escolha primeiro uma assinatura.</p>
+      <form class="box formulario caixa-login" id="form-cadastro">
+        <label for="nome-cadastro">Nome completo</label>
+        <input id="nome-cadastro" name="nome" maxlength="100" autocomplete="name" required>
+        <label for="email-cadastro">Gmail de acesso</label>
+        <input id="email-cadastro" name="email" type="email" placeholder="seunome@gmail.com" autocomplete="email" required>
+        <label for="telefone-cadastro">Telefone</label>
+        <input id="telefone-cadastro" name="telefone" type="tel" maxlength="22" autocomplete="tel" required>
+        <label for="senha-cadastro">Crie sua senha (mínimo de 10 caracteres)</label>
+        <input id="senha-cadastro" name="senha" type="password" minlength="10" autocomplete="new-password" required>
+        <label for="senha-confirma">Confirme sua senha</label>
+        <input id="senha-confirma" name="confirma" type="password" minlength="10" autocomplete="new-password" required>
+        <div class="box pagamento-demo">
+          <h3>Pagamento simulado</h3>
+          <p>Nesta versão, não informe dados de cartão, CPF ou PIX. O botão simula uma compra aprovada para demonstrar o acesso.</p>
+          <label class="checkbox-linha"><input type="checkbox" id="aceite-teste" required> Entendi que esta compra é apenas uma simulação, sem cobrança real.</label>
+        </div>
+        <button class="btn-primary" type="submit">Simular pagamento e criar conta</button>
+        <p id="mensagem-cadastro" class="mensagem" role="status"></p>
+      </form>
+    </section>
+    <!-- NOVO: o login utiliza a API do servidor e diferencia papéis. -->
+    <section id="login" class="pagina secao" hidden>
+      <span class="eyebrow">ÁREA RESTRITA</span>
+      <h1>Entrar na plataforma</h1>
+      <p class="subtitulo">Alunos com assinatura ativa ou administradores autorizados podem acessar sua área.</p>
+      <form class="box formulario caixa-login" id="form-login">
+        <label for="email-login">E-mail</label><input type="email" id="email-login" autocomplete="username" required>
+        <label for="senha-login">Senha</label>
+        <div class="campo-senha"><input type="password" id="senha-login" autocomplete="current-password" required><button type="button" class="mostrar-senha" id="mostrar-senha">Mostrar</button></div>
+        <button class="btn-primary" type="submit">Entrar</button>
+        <p id="mensagem-login" class="mensagem" role="status"></p>
+        <p>Não é aluno? <a class="link-conteudo" href="#planos">Conheça os planos</a></p>
+      </form>
+    </section>
+    <!-- NOVO: aluno não recebe ações administrativas. -->
+    <section id="minha-conta" class="pagina secao" hidden>
+      <span class="eyebrow">ÁREA DO ALUNO</span><h1>Minha área de estudos</h1>
+      <div class="box encontro-box"><h2 id="boas-vindas">Bem-vindo!</h2><p id="situacao-assinatura"></p>
+        <div class="botoes"><a class="btn-primary" href="#aulas">Ver aulas</a><a class="btn-secondary" href="#biblioteca">Biblioteca</a><button type="button" class="btn-secondary" id="sair-conta">Sair da conta</button></div>
+      </div>
+    </section>
+    <!-- NOVO: painel administrativo com edição e exclusão via API protegida. -->
+    <section id="gestao" class="pagina secao" hidden>
+      <span class="eyebrow">ACESSO ADMINISTRATIVO</span><h1>Painel de gestão</h1>
+      <p class="subtitulo">Gerencie planos, alunos e conteúdos. Todas as alterações desta demonstração são salvas no servidor local.</p>
+      <div class="abas-gestao">
+        <button class="btn-secondary" type="button" data-aba="conteudos">Aulas e conteúdos</button>
+        <button class="btn-secondary" type="button" data-aba="usuarios">Alunos</button>
+        <button class="btn-secondary" type="button" data-aba="planos-admin">Produtos e assinaturas</button>
+        <button class="btn-secondary" type="button" id="sair-admin">Sair</button>
+      </div>
+      <div id="admin-conteudos" class="aba-painel">
+        <form class="box formulario" id="form-gestao">
+          <input type="hidden" id="id-item">
+          <label for="tipo-item">Tipo de conteúdo</label><select id="tipo-item"><option value="aulas">Aula</option><option value="materiais">Material</option><option value="recomendacoes">Recomendação</option><option value="depoimentos">Depoimento</option></select>
+          <label for="titulo-item">Título ou nome do aluno</label><input id="titulo-item" maxlength="100" required>
+          <label for="categoria-item">Módulo ou categoria</label><input id="categoria-item" maxlength="70" required>
+          <label for="descricao-item">Descrição, tópicos ou depoimento</label><textarea id="descricao-item" maxlength="1200" rows="3" required></textarea>
+          <label for="link-item">Link HTTPS ou arquivo da pasta materiais/</label><input id="link-item" placeholder="https://...">
+          <label class="checkbox-linha"><input id="autorizado-item" type="checkbox"> Depoimento autorizado para publicação</label>
+          <button type="submit" class="btn-primary">Salvar conteúdo</button><button type="button" id="cancelar-edicao-item" class="btn-secondary">Cancelar edição</button>
+          <p id="retorno-gestao" class="mensagem" role="status"></p>
+        </form><div id="admin-lista-conteudos" class="lista-administrativa"></div>
+      </div>
+      <div id="admin-usuarios" class="aba-painel" hidden>
+        <h2>Gerenciar alunos</h2><p class="subtitulo">O administrador pode editar nome, e-mail, telefone, plano e situação da assinatura ou excluir alunos.</p>
+        <form id="form-novo-aluno" class="box formulario">
+          <h3>Cadastrar aluno manualmente</h3>
+          <label for="novo-aluno-nome">Nome</label><input id="novo-aluno-nome" required>
+          <label for="novo-aluno-email">Gmail</label><input id="novo-aluno-email" type="email" required>
+          <label for="novo-aluno-telefone">Telefone</label><input id="novo-aluno-telefone" type="tel" required>
+          <label for="novo-aluno-senha">Senha temporária (mín. 10 caracteres)</label><input id="novo-aluno-senha" type="password" minlength="10" required>
+          <label for="novo-aluno-plano">Plano</label><select id="novo-aluno-plano" required></select>
+          <button class="btn-primary" type="submit">Adicionar aluno</button><p id="retorno-novo-aluno" class="mensagem" role="status"></p>
+        </form>
+        <div id="admin-lista-usuarios" class="lista-administrativa"></div>
+      </div>
+      <div id="admin-planos-admin" class="aba-painel" hidden>
+        <form id="form-plano" class="box formulario">
+          <input type="hidden" id="plano-id">
+          <label for="plano-nome">Nome do plano</label><input id="plano-nome" maxlength="55" required>
+          <label for="plano-preco">Mensalidade (R$)</label><input id="plano-preco" type="number" min="1" max="100000" step="0.01" required>
+          <label for="plano-meses">Duração em meses</label><input id="plano-meses" type="number" min="1" max="36" step="1" required>
+          <button class="btn-primary" type="submit">Salvar plano</button><button class="btn-secondary" type="button" id="cancelar-plano">Cancelar edição</button>
+          <p id="retorno-plano" class="mensagem" role="status"></p>
+        </form><div id="admin-lista-planos" class="lista-administrativa"></div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"> <!-- Rodapé mantido em todas as telas. -->
+    <span><strong>LOGISSA<span class="ponto">.</span></strong> REDAÇÃO</span> <!-- Assinatura visual. -->
+    <p>Conhecimento que acompanha sua evolução.</p> <!-- Mensagem institucional. -->
+    <a href="#login" class="link-discreto">Acesso administrativo</a> <!-- Acesso por sessão Supabase. -->
+    <small>© <span id="ano"></span> Logissa. Protótipo — banco integrado, pagamentos simulados.</small> <!-- Ano atualizado automaticamente. -->
+  </footer>
+  <!-- Banco e autenticação Supabase: nenhuma senha fica no código. -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="config.js"></script>
+  <script src="script.js" defer></script>
+  
+</body>
+</html>
