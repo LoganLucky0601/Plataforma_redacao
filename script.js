@@ -89,7 +89,7 @@ $('validar-codigo-recuperacao').addEventListener('click', async () => {
     const email = emailRecuperacao();
     const token = $('codigo-recuperacao').value.trim();
     if (!email) return;
-    if (!/^\\d{6}$/.test(token)) {
+    if (!/^\d{6}$/.test(token)) {
         aviso('mensagem-recuperacao', 'O código deve conter seis números.');
         return;
     }
