@@ -128,9 +128,41 @@
         <div class="campo-senha"><input type="password" id="senha-login" autocomplete="current-password" required><button type="button" class="mostrar-senha" id="mostrar-senha">Mostrar</button></div>
         <button class="btn-primary" type="submit">Entrar</button>
         <p id="mensagem-login" class="mensagem" role="status"></p>
-        <!-- Permite solicitar novamente o e-mail quando o cadastro ainda não foi confirmado. -->
-        <button class="btn-secondary" type="button" id="reenviar-confirmacao">Reenviar e-mail de confirmação</button>
+        <!-- O usuário pode recuperar o acesso sem conhecer a senha anterior. -->
+        <a class="link-conteudo" href="#recuperar">Esqueceu sua senha?</a>
         <p>Não é aluno? <a class="link-conteudo" href="#planos">Conheça os planos</a></p>
+      </form>
+    </section>
+    <!-- Recuperação oficial pelo Supabase: link ou código recebido por e-mail. -->
+    <section id="recuperar" class="pagina secao" hidden>
+      <span class="eyebrow">SEGURANÇA DA CONTA</span>
+      <h1>Esqueceu sua senha?</h1>
+      <p class="subtitulo">Escolha como deseja confirmar que o e-mail pertence a você.</p>
+      <div class="box formulario caixa-login">
+        <label for="email-recuperacao">E-mail da sua conta</label>
+        <input id="email-recuperacao" type="email" autocomplete="email" placeholder="seuemail@gmail.com" required>
+        <p>Opção 1 — Receba um link para redefinir a senha.</p>
+        <button type="button" id="enviar-link-recuperacao" class="btn-primary">Enviar link de recuperação</button>
+        <p>Opção 2 — Receba um código de uso único por e-mail.</p>
+        <button type="button" id="enviar-codigo-recuperacao" class="btn-secondary">Solicitar código</button>
+        <label for="codigo-recuperacao">Código recebido (6 dígitos)</label>
+        <input id="codigo-recuperacao" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" placeholder="000000">
+        <button type="button" id="validar-codigo-recuperacao" class="btn-secondary">Validar código</button>
+        <p id="mensagem-recuperacao" class="mensagem" role="status" aria-live="polite"></p>
+        <a class="link-conteudo" href="#login">Voltar ao login</a>
+      </div>
+    </section>
+    <!-- Só permite definir uma nova senha após validar o link ou o código. -->
+    <section id="nova-senha" class="pagina secao" hidden>
+      <span class="eyebrow">REDEFINIÇÃO DE ACESSO</span>
+      <h1>Escolha sua nova senha</h1>
+      <form id="form-nova-senha" class="box formulario caixa-login">
+        <label for="nova-senha-campo">Nova senha (mínimo de 10 caracteres)</label>
+        <input id="nova-senha-campo" type="password" minlength="10" autocomplete="new-password" required>
+        <label for="nova-senha-confirmacao">Confirme a nova senha</label>
+        <input id="nova-senha-confirmacao" type="password" minlength="10" autocomplete="new-password" required>
+        <button type="submit" class="btn-primary">Salvar nova senha</button>
+        <p id="mensagem-nova-senha" class="mensagem" role="status" aria-live="polite"></p>
       </form>
     </section>
     <!-- NOVO: aluno não recebe ações administrativas. -->
