@@ -27,7 +27,7 @@
       <a href="#planos" data-rota="planos">Planos</a> <!-- Assinaturas. --> <!-- Abre comentários aprovados. -->
     </nav>
     <div class="acoes-cabecalho"> <!-- Botões do lado direito. -->
-      <a class="btn-header" href="#encontro" data-rota="encontro">Encontro com Raíssa</a> <!-- Mantém o encontro em destaque. -->
+      <a class="btn-header" href="#encontro" data-rota="encontro">Encontro com Raissa</a> <!-- Mantém o encontro em destaque. -->
       <a class="btn-login" href="#login" data-rota="login" id="link-login">Entrar</a> <!-- Abre o formulário de acesso demonstrativo. -->
     </div>
   </header>
@@ -81,16 +81,15 @@
       <div class="box destaque"><h2>Quer deixar seu relato?</h2><p>Na versão pública, um formulário com autorização e moderação poderá receber sua mensagem. Nesta demonstração, ainda não há envio para servidor.</p></div> <!-- Esclarece a limitação inicial. -->
     </section>
     <section id="encontro" class="pagina secao" aria-labelledby="titulo-encontro" hidden> <!-- Tela para encontros opcionais. -->
-      <span class="eyebrow">UM MOMENTO ESPECIAL</span><h1 id="titulo-encontro">Encontro com Raíssa</h1><p class="subtitulo">Para quem deseja uma orientação mais próxima, a plataforma poderá oferecer encontros mediante disponibilidade.</p> <!-- Apresenta a opção premium sem prometer vagas. -->
-      <div class="box encontro-box"><span class="icone-bloco">◇</span><h2>Uma conversa para orientar seus próximos passos</h2><p>Definam juntos o formato, a duração e as condições antes de habilitar agendamentos ou pagamentos.</p><span class="tag">Agendamentos ainda não disponíveis</span></div> <!-- Informa o status verdadeiro. -->
+      <span class="eyebrow">MENTORIA PERSONALIZADA</span><h1 id="titulo-encontro">Encontro com Raíssa</h1><p class="subtitulo">Para quem deseja uma orientação mais próxima, a plataforma poderá oferecer encontros para mentoria mediante disponibilidade.</p> <!-- Apresenta a opção premium sem prometer vagas. -->
+      <div class="box encontro-box"><span class="icone-bloco">◇</span><h2>Correções personalizadas e Aulas ao vivo</h2><p>Tenha um acompanhamento exclusivo e direcionado. Encontros estratégicos com a Raíssa para tirar dúvidas e destravar o seu texto rumo à nota máxima.</p><span class="tag">Agendamentos ainda não disponíveis</span></div> <!-- Informa o status verdadeiro. -->
     </section>
     <!-- NOVO: tela de planos, os recursos são iguais em todos. -->
     <section id="planos" class="pagina secao" hidden>
       <span class="eyebrow">ASSINATURAS</span>
       <h1>Escolha seu plano</h1>
-      <p class="subtitulo">Todos os planos dão acesso aos mesmos recursos. Os valores são fictícios e podem ser modificados no painel administrativo.</p>
+      <p class="subtitulo">Selecione o plano ideal para o seu ritmo de estudo e comece agora mesmo. Todos os planos garantem acesso total a todos os conteúdos, aulas e mentorias.</p>
       <div id="lista-planos" class="grid tres"></div>
-      <p class="observacao">Demonstração: a confirmação do pagamento é simulada. Nenhum valor será cobrado.</p>
     </section>
     <!-- NOVO: cadastro vem depois da seleção de um plano. -->
     <section id="cadastro" class="pagina secao" hidden>
@@ -109,7 +108,7 @@
         <label for="senha-confirma">Confirme sua senha</label>
         <input id="senha-confirma" name="confirma" type="password" minlength="10" autocomplete="new-password" required>
         <div class="box pagamento-demo">
-          <h3>Pagamento simulado</h3>
+          <h3>Pagamento</h3>
           <p>Nesta versão, não informe dados de cartão, CPF ou PIX. O botão simula uma compra aprovada para demonstrar o acesso.</p>
           <label class="checkbox-linha"><input type="checkbox" id="aceite-teste" required> Entendi que esta compra é apenas uma simulação, sem cobrança real.</label>
         </div>
@@ -119,9 +118,9 @@
     </section>
     <!-- NOVO: o login utiliza a API do servidor e diferencia papéis. -->
     <section id="login" class="pagina secao" hidden>
-      <span class="eyebrow">ÁREA RESTRITA</span>
-      <h1>Entrar na plataforma</h1>
-      <p class="subtitulo">Alunos com assinatura ativa ou administradores autorizados podem acessar sua área.</p>
+      <span class="eyebrow">ENTRAR NA PLATAFORMA</span>
+      <h1>Acesse sua área exclusiva</h1>
+      <p class="subtitulo">Alunos com assinatura ativa ou administradores podem fazer login abaixo.</p>
       <form class="box formulario caixa-login" id="form-login">
         <label for="email-login">E-mail</label><input type="email" id="email-login" autocomplete="username" required>
         <label for="senha-login">Senha</label>
@@ -221,10 +220,12 @@
     </section>
   </main>
   <footer class="site-footer"> <!-- Rodapé mantido em todas as telas. -->
-    <span><strong>LOGISSA<span class="ponto">.</span></strong> REDAÇÃO</span> <!-- Assinatura visual. -->
+    <span><strong>Raissa<span class="ponto">.</span></strong> REDAÇÃO</span> <!-- Assinatura viszAY5c6xTQU5!Q2TSual. -->
     <p>Conhecimento que acompanha sua evolução.</p> <!-- Mensagem institucional. -->
     <a href="#login" class="link-discreto">Acesso administrativo</a> <!-- Acesso por sessão Supabase. -->
-    <small>© <span id="ano"></span> Logissa. Protótipo — banco integrado, pagamentos simulados.</small> <!-- Ano atualizado automaticamente. -->
+    <small>© <span id="ano"></span> Redação com a Rai — Todos os direitos reservados.
+
+.</small> <!-- Ano atualizado automaticamente. -->
   </footer>
   <!-- Banco e autenticação Supabase: nenhuma senha fica no código. -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
