@@ -145,7 +145,20 @@
     function chooseModule(id){adminModule=id;editingLesson=null;renderAdmin();}
     function renderAdmin(){
         const list=E('modulos-admin-lista');list.replaceChildren();
-        modules.forEach(m=>{const b=node('button',m.id===adminModule?'ativo':'',m.title);b.type='button';b.onclick=()=>chooseModule(m.id);list.append(b);});
+        modules.forEach((m,index)=>{
+            // Cada módulo ocupa um cartão inteiro, com descrição breve e total de aulas.
+            const ativo=m.id===adminModule;
+            const b=node('button','modulos-admin-cartao'+(ativo?' ativo':''));b.type='button';
+            b.setAttribute('aria-pressed',String(ativo));
+            const cab=node('span','modulos-admin-cartao-topo');
+            cab.append(node('span','modulos-admin-numero',String(m.position||index+1).padStart(2,'0')),
+                       node('span','modulos-admin-total',getLessons(m.id).length+' aula(s)'));
+            const titulo=node('strong','modulos-admin-cartao-titulo',m.title);
+            b.append(cab,titulo);
+            if(m.subtitle)b.append(node('small','modulos-admin-cartao-resumo',m.subtitle));
+            b.onclick=()=>chooseModule(m.id);
+            list.append(b);
+        });
         const m=modules.find(x=>x.id===adminModule);
         E('modulos-form-modulo').hidden=!m; E('modulos-listagem-editor').hidden=!m;
         E('modulos-form-aula').hidden=!editingLesson;
