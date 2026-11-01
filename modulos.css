@@ -9,3 +9,28 @@
 @media(max-width:900px){.modulos-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.modulos-colunas,.modulos-admin-layout{grid-template-columns:1fr}}@media(max-width:600px){.modulos-grid{grid-template-columns:1fr}.modulos-barra{flex-direction:column;align-items:stretch}.modulos-anexo-editor{grid-template-columns:1fr}.modulos-linha-admin{flex-direction:column;align-items:flex-start}}
 /* Respeita o atributo hidden quando os elementos usam CSS grid. */
 #modulos-grid[hidden],#modulos-barra[hidden],#modulos-detalhe[hidden],#modulos-form-modulo[hidden],#modulos-listagem-editor[hidden],#modulos-form-aula[hidden],#admin-modulos[hidden]{display:none!important}
+
+/* LISTA ADMINISTRATIVA DE MÓDULOS — cartões independentes e responsivos. */
+#modulos-admin-lista {display:grid;gap:10px;margin-top:16px;min-width:0}
+#modulos-admin-lista .modulos-admin-cartao {
+    display:flex;flex-direction:column;align-items:stretch;text-align:left;
+    width:100%;min-width:0;padding:14px 15px;gap:8px;
+    border:1px solid var(--modulo-cor-borda);border-radius:13px;
+    background:var(--cor-fundo-card,var(--painel-claro));color:var(--cor-texto-principal);
+    font:inherit;line-height:1.5;cursor:pointer;
+    transition:border-color .18s,background .18s,transform .18s,box-shadow .18s;
+}
+#modulos-admin-lista .modulos-admin-cartao:hover {border-color:var(--modulo-cor-selo);transform:translateY(-1px)}
+#modulos-admin-lista .modulos-admin-cartao:focus-visible {outline:3px solid var(--modulo-cor-selo);outline-offset:2px}
+#modulos-admin-lista .modulos-admin-cartao.ativo {
+    border-color:var(--modulo-cor-selo);
+    background:var(--modulo-cor-ativo);
+    box-shadow:inset 3px 0 0 var(--modulo-cor-selo);
+}
+.modulos-admin-cartao-topo {display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.modulos-admin-numero {color:var(--modulo-cor-selo);font-weight:800;font-size:.77rem;letter-spacing:.09em}
+.modulos-admin-total {color:var(--cor-texto-secundario);font-size:.72rem}
+.modulos-admin-cartao-titulo {display:block;font-size:.87rem;overflow-wrap:anywhere}
+.modulos-admin-cartao-resumo {font-size:.75rem;color:var(--cor-texto-secundario);overflow-wrap:anywhere}
+.modulos-admin-lateral {min-width:0}
+.modulos-admin-lateral #modulos-novo {width:100%}
