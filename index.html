@@ -177,7 +177,7 @@
       <span class="eyebrow">ACESSO ADMINISTRATIVO</span><h1>Painel de gestão</h1>
       <p class="subtitulo">Gerencie planos, alunos e conteúdos. Todas as alterações desta demonstração são salvas no servidor local.</p>
       <div class="abas-gestao">
-        <button class="btn-secondary" type="button" data-aba="conteudos">Aulas e conteúdos</button>
+        <button class="btn-secondary" type="button" data-aba="conteudos">Materiais e conteúdos</button>
         <button class="btn-secondary" type="button" data-aba="usuarios">Alunos</button>
         <button class="btn-secondary" type="button" data-aba="planos-admin">Produtos e assinaturas</button>
         <button class="btn-secondary" type="button" id="sair-admin">Sair</button>
@@ -185,9 +185,9 @@
       <div id="admin-conteudos" class="aba-painel">
         <form class="box formulario" id="form-gestao">
           <input type="hidden" id="id-item">
-          <label for="tipo-item">Tipo de conteúdo</label><select id="tipo-item"><option value="aulas">Aula</option><option value="materiais">Material</option><option value="recomendacoes">Recomendação</option><option value="depoimentos">Depoimento</option></select>
+          <label for="tipo-item">Tipo de conteúdo</label><select id="tipo-item"><option value="materiais">Material</option><option value="recomendacoes">Recomendação</option><option value="depoimentos">Depoimento</option></select>
           <label for="titulo-item">Título ou nome do aluno</label><input id="titulo-item" maxlength="100" required>
-          <label for="categoria-item">Módulo ou categoria</label><input id="categoria-item" maxlength="70" required>
+          <label for="categoria-item">Categoria</label><input id="categoria-item" maxlength="70" required>
           <label for="descricao-item">Descrição, tópicos ou depoimento</label><textarea id="descricao-item" maxlength="1200" rows="3" required></textarea>
           <label for="link-item">Link HTTPS ou arquivo da pasta materiais/</label><input id="link-item" placeholder="https://...">
           <label class="checkbox-linha"><input id="autorizado-item" type="checkbox"> Depoimento autorizado para publicação</label>
